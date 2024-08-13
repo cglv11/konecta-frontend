@@ -3,7 +3,6 @@ import { Modal, TextField, Button } from '@material-ui/core';
 import { VehicleContext } from '../../context/VehicleContext';
 import { CircularProgress } from '@material-ui/core';
 import { Snackbar } from '@material-ui/core';
-import Alert from '@material-ui/lab/Alert';
 import { makeStyles } from "@material-ui/core/styles";
 import './EditVehicleModal.css';
 
