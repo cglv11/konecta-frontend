@@ -18,18 +18,17 @@ const Navbar = () => {
           <Box sx={{ flexGrow: 1, display: 'flex', gap: 2 }}>
             {user.employee.role === 'ADMIN' ? (
               <>
-                <Button color="inherit" onClick={() => navigate('/admin/reports')}>Reports</Button>
-                <Button color="inherit" onClick={() => navigate('/admin/settings')}>Settings</Button>
+                <Button color="inherit" onClick={() => navigate('/admin')}>Inicio</Button>
+                <Button color="inherit" onClick={() => navigate('/admin')}>Empleados</Button>
+                <Button color="inherit" onClick={() => navigate('/admin/request')}>Solicitudes</Button>
               </>
             ) : (
               <>
-                <Button color="inherit" onClick={() => navigate('/employee/tasks')}>Tasks</Button>
-                <Button color="inherit" onClick={() => navigate('/employee/profile')}>Profile</Button>
+                <Button color="inherit" onClick={() => navigate('/employee')}>Inicio</Button>
               </>
             )}
           </Box>
-  
-          <Button color="inherit" onClick={handleLogout}>Logout</Button>
+          <Button color="inherit" onClick={handleLogout}>Salir</Button>
         </Toolbar>
       </AppBar>
     );
