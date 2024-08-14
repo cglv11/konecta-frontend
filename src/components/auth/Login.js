@@ -50,10 +50,16 @@ const Login = () => {
             />
             <Button
               type="submit"
-              variant="contained"
               color="primary"
               fullWidth
               className="button"
+              size="large"
+              variant="outlined"
+              style={{
+                  backgroundColor: '#536C79',  
+                  color: 'white', 
+                  textTransform: 'none'
+              }}
             >
               Login
             </Button>
