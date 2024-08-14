@@ -7,10 +7,9 @@ export const AdminProvider = ({ children }) => {
   const [requests, setRequests] = useState([]);
   const [totalPages, setTotalPages] = useState(1);
   const [currentRequest, setCurrentRequest] = useState(null);
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
 
   const getRequests = async (page = 1, limit = 10, code = '') => {
-    setLoading(true);
     try {
       const response = await api.get('/requests', {
         params: {

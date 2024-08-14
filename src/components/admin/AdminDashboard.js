@@ -4,12 +4,14 @@ import { Button, Snackbar } from '@material-ui/core';
 import Alert from '@material-ui/lab/Alert';
 
 import { AdminContext } from '../../context/AdminContext';
+import { AuthContext } from '../../context/AuthContext';
 import RequestsTable from '../tables/RequestsTable';
 import RequestModal from '../modals/RequestModal';
 import CreateRequestModal from '../modals/CreateRequestModal';
 
 const AdminDashboard = () => {
   const { requests, getRequests, totalPages, loading, postRequest, deleteRequest } = useContext(AdminContext);
+  const { user } = useContext(AuthContext);
   const [page, setPage] = useState(1);
   const [selectedRequest, setSelectedRequest] = useState(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -110,7 +112,7 @@ const AdminDashboard = () => {
           isOpen={isCreateModalOpen}
           onClose={() => setIsCreateModalOpen(false)}
           onCreateRequest={handleCreateRequest}
-          employeeId={null}
+          employeeId={user.employee.id}
         />
       )}
 

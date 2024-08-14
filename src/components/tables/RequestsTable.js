@@ -65,13 +65,13 @@ const RequestsTable = ({
                                             </IconButton>
                                             {isAdmin && (
                                                 <>
-                                                    <IconButton 
+                                                    {/* <IconButton 
                                                         onClick={() => onEditClick(request)} 
                                                         title="Edit Request"
                                                         className="editButton" 
                                                     >
                                                         <EditIcon fontSize="medium"  style={{ color: 'white'}} />
-                                                    </IconButton>
+                                                    </IconButton> */}
                                                     <IconButton 
                                                         onClick={() => onDeleteClick(request.id)} 
                                                         title="Delete Request"
