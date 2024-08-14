@@ -1,6 +1,6 @@
 # Konecta Frontend
 
-This is the frontend part of the Konecta project, built with React and served using Nginx. The project is containerized using Docker, making it easy to deploy and run in any environment.
+This is the frontend part of the Konecta project, built with React and served using Nginx. The project can be run locally or containerized using Docker for easy deployment and running in any environment.
 
 ## Table of Contents
 
@@ -9,13 +9,15 @@ This is the frontend part of the Konecta project, built with React and served us
   - [Project Structure](#project-structure)
   - [Prerequisites](#prerequisites)
   - [Setup Instructions](#setup-instructions)
-    - [1. Create a Docker Network](#1-create-a-docker-network)
-    - [2. Build the Docker Image](#2-build-the-docker-image)
-  - [Running the Project](#running-the-project)
+    - [1. Run the Project Locally](#1-run-the-project-locally)
+    - [2. Create a Docker Network](#2-create-a-docker-network)
+    - [3. Build the Docker Image](#3-build-the-docker-image)
+  - [Running the Project Locally](#running-the-project-locally)
+  - [Running the Project with Docker](#running-the-project-with-docker)
   - [Stopping the Project](#stopping-the-project)
   - [Docker Compose Commands](#docker-compose-commands)
   - [Custom Nginx Configuration](#custom-nginx-configuration)
-    - [Example `nginx.conf`:](#example-nginxconf)
+    - [Example `nginx.conf`](#example-nginxconf)
   - [Additional Notes](#additional-notes)
 
 ## Project Structure
@@ -30,20 +32,39 @@ Here is a brief overview of the key files in this project:
 
 Before you start, make sure you have the following installed on your machine:
 
+- Node.js (for running the project locally): [Install Node.js](https://nodejs.org/)
 - Docker: [Install Docker](https://docs.docker.com/get-docker/)
 - Docker Compose: [Install Docker Compose](https://docs.docker.com/compose/install/)
 
 ## Setup Instructions
 
-### 1. Create a Docker Network
+### 1. Run the Project Locally
 
-Before running the frontend service, ensure that the Docker network `konecta_network` is created:
+If you prefer to run the project locally without Docker, follow these steps:
+
+1. Install the project dependencies:
+
+   ```bash
+   npm install
+   ```
+
+2. Start the development server:
+
+   ```bash
+   npm start
+   ```
+
+   This will start the React development server. You can access the application in your browser at [http://localhost:3000](http://localhost:3000).
+
+### 2. Create a Docker Network
+
+Before running the frontend service using Docker, ensure that the Docker network `konecta_network` is created:
 
 ```bash
 docker network create konecta_network
 ```
 
-### 2. Build the Docker Image
+### 3. Build the Docker Image
 
 Build the Docker image for the frontend service:
 
@@ -53,9 +74,13 @@ docker-compose build
 
 This command will execute the instructions in the `Dockerfile` to build the React application and prepare it for deployment using Nginx.
 
-## Running the Project
+## Running the Project Locally
 
-To start the frontend service, use Docker Compose:
+If running locally without Docker, the application will be available at [http://localhost:3000](http://localhost:3000) after executing `npm start`.
+
+## Running the Project with Docker
+
+To start the frontend service using Docker Compose:
 
 ```bash
 docker-compose up -d
