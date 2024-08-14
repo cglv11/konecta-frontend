@@ -3,6 +3,7 @@ import { Routes, Route, Navigate } from 'react-router-dom';
 
 import { AuthContext } from './../context/AuthContext';
 import AdminDashboard from '../components/admin/AdminDashboard';
+import AdminEmployeeSection from '../components/admin/AdminEmployeeSection';
 import EmployeeDashboard from '../components/employee/EmployeeDashboard';
 import Login from '../components/auth/Login';
 import Loading from '../components/Loading';
@@ -26,6 +27,7 @@ const Navigator = () => {
       {user.employee.role === 'ADMIN' ? (
         <>
           <Route path="/admin" element={<AdminDashboard />} />
+          <Route path="/admin/employee" element={<AdminEmployeeSection />} />
           <Route path="*" element={<Navigate to="/admin" />} />
         </>
       ) : (

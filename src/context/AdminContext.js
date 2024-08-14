@@ -5,8 +5,10 @@ export const AdminContext = createContext();
 
 export const AdminProvider = ({ children }) => {
   const [requests, setRequests] = useState([]);
+  const [employees, setEmployees] = useState([]);
   const [totalPages, setTotalPages] = useState(1);
   const [currentRequest, setCurrentRequest] = useState(null);
+  const [currentEmployee, setCurrentEmployee] = useState(null);
   const [loading, setLoading] = useState(true);
 
   const getRequests = async (page = 1, limit = 10, code = '') => {
@@ -54,6 +56,54 @@ export const AdminProvider = ({ children }) => {
     }
   };
 
+  // ENDPOINTS EMPLEADOS
+  const getEmployees = async (page = 1, limit = 10, name = '', username = '', role = '') => {
+    try {
+      const response = await api.get('/employees', {
+        params: {
+          page,
+          limit,
+          name,
+          username,
+          role,
+        },
+      });
+
+      setEmployees(response.data.employees);
+      setTotalPages(response.data.totalPages);
+    } catch (error) {
+      console.error('Error fetching employees:', error);
+    }
+    setLoading(false);
+  };
+
+  const getEmployee = async (id) => {
+    try {
+      const response = await api.get(`/employees/${id}`);
+      setCurrentEmployee(response.data);
+    } catch (error) {
+      console.error('Error fetching request:', error);
+    }
+  };
+
+  const postEmployee = async (employeeData) => {
+    try {
+      const response = await api.post('/employees', employeeData);
+      setEmployees([...employees, response.data.employee]);
+    } catch (error) {
+      console.error('Error creating employee:', error);
+    }
+  };
+
+  const deleteEmployee = async (id) => {
+    try {
+      await api.delete(`/employees/${id}`);
+      setEmployees(employees.filter(employee => employee.id !== id));
+    } catch (error) {
+      console.error('Error deleting employee:', error);
+    }
+  };
+
   return (
     <AdminContext.Provider
       value={{
@@ -65,6 +115,12 @@ export const AdminProvider = ({ children }) => {
         postRequest,
         deleteRequest,
         currentRequest,
+        employees,
+        getEmployees,
+        getEmployee,
+        postEmployee,
+        deleteEmployee,
+        currentEmployee
       }}
     >
       {children}

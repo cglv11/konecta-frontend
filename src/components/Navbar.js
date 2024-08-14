@@ -19,8 +19,8 @@ const Navbar = () => {
             {user.employee.role === 'ADMIN' ? (
               <>
                 <Button color="inherit" onClick={() => navigate('/admin')}>Inicio</Button>
-                <Button color="inherit" onClick={() => navigate('/admin/request')}>Solicitudes</Button>
-                <Button color="inherit" onClick={() => navigate('/admin/employees')}>Empleados</Button>
+                <Button color="inherit" onClick={() => navigate('/admin')}>Solicitudes</Button>
+                <Button color="inherit" onClick={() => navigate('/admin/employee')}>Empleados</Button>
               </>
             ) : (
               <>
