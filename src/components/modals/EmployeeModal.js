@@ -66,7 +66,7 @@ function EmployeeModal({ isOpen, onClose, employeeData, onUpdateEmployee }) {
                             classes: {
                               underline: classes.underline,
                             },
-                            readOnly: true // No editable
+                            readOnly: true
                         }}
                         InputLabelProps={{
                             classes: {

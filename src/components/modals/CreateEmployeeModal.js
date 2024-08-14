@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Modal, TextField, Button, CircularProgress, Snackbar } from '@material-ui/core';
+import { Modal, TextField, Button, CircularProgress, Snackbar, MenuItem } from '@material-ui/core';
 import Alert from '@material-ui/lab/Alert';
 import { makeStyles } from "@material-ui/core/styles";  
 import "./RequestModal.css";
@@ -16,23 +16,28 @@ const useStyles = makeStyles({
     label: {     
         "&.Mui-focused": {
             color: "#2297C5"
-          }
+        }
     }
 });
 
-function CreateRequestModal({ isOpen, onClose, onCreateRequest, employeeId }) {
-    const [request, setRequest] = useState({
-        code: '',
-        summary: '',
-        description: '',
-        employeeId: employeeId,
+function CreateEmployeeModal({ isOpen, onClose, onCreateEmployee }) {
+    const [employee, setEmployee] = useState({
+        username: '',
+        password: '',
+        role: 'EMPLOYEE',
+        hireDate: '',
+        name: '',
+        salary: 0,
     });
     const [isLoading, setIsLoading] = useState(false);
     const [openSnackbar, setOpenSnackbar] = useState(false);
 
     const handleInputChange = (e) => {
-        const { name, value } = e.target;
-        setRequest(prev => ({ ...prev, [name]: value }));
+      const { name, value } = e.target;
+      setEmployee(prev => ({
+          ...prev,
+          [name]: name === "salary" ? (value === '' ? '' : parseFloat(value)) : value
+      }));
     };
 
     const classes = useStyles();
@@ -41,7 +46,10 @@ function CreateRequestModal({ isOpen, onClose, onCreateRequest, employeeId }) {
         setIsLoading(true);
     
         try {
-            const created = await onCreateRequest(request);
+            const created = await onCreateEmployee({
+                ...employee,
+                hireDate: new Date(employee.hireDate).toISOString(),
+            });
     
             if (created) {
                 setOpenSnackbar(true);
@@ -59,13 +67,13 @@ function CreateRequestModal({ isOpen, onClose, onCreateRequest, employeeId }) {
     return (
         <Modal open={isOpen} onClose={onClose}>
             <div className="modalContent">
-                <h2>Create New Request</h2>
+                <h2>Create New Employee</h2>
                 <TextField
-                    label="Code"
-                    name="code"
-                    value={request.code}
+                    label="Username"
+                    name="username"
+                    value={employee.username}
                     onChange={handleInputChange}
-                    className="codeField"
+                    className="usernameField"
                     variant="filled"
                     InputProps={{
                         classes: {
@@ -79,13 +87,13 @@ function CreateRequestModal({ isOpen, onClose, onCreateRequest, employeeId }) {
                       }}
                 />
                 <TextField
-                    label="Summary"
-                    name="summary"
-                    value={request.summary}
+                    label="Password"
+                    name="password"
+                    type="password"
+                    value={employee.password}
                     onChange={handleInputChange}
-                    className="summaryField"
+                    className="passwordField"
                     variant="filled"
-                    multiline
                     InputProps={{
                         classes: {
                           underline: classes.underline,
@@ -98,13 +106,13 @@ function CreateRequestModal({ isOpen, onClose, onCreateRequest, employeeId }) {
                       }}
                 />
                 <TextField
-                    label="Description"
-                    name="description"
-                    value={request.description}
+                    select
+                    label="Role"
+                    name="role"
+                    value={employee.role}
                     onChange={handleInputChange}
-                    className="descriptionField"
+                    className="roleField"
                     variant="filled"
-                    multiline
                     InputProps={{
                         classes: {
                           underline: classes.underline,
@@ -115,6 +123,66 @@ function CreateRequestModal({ isOpen, onClose, onCreateRequest, employeeId }) {
                           root: classes.label,
                         }
                       }}
+                >
+                    <MenuItem value="ADMIN">ADMIN</MenuItem>
+                    <MenuItem value="EMPLOYEE">EMPLOYEE</MenuItem>
+                </TextField>
+                <TextField
+                    label="Hire Date"
+                    name="hireDate"
+                    type="date"
+                    value={employee.hireDate}
+                    onChange={handleInputChange}
+                    className="hireDateField"
+                    variant="filled"
+                    InputProps={{
+                        classes: {
+                          underline: classes.underline,
+                        }
+                      }}
+                    InputLabelProps={{
+                        classes: {
+                          root: classes.label,
+                        },
+                        shrink: true
+                      }}
+                />
+                <TextField
+                    label="Name"
+                    name="name"
+                    value={employee.name}
+                    onChange={handleInputChange}
+                    className="nameField"
+                    variant="filled"
+                    InputProps={{
+                        classes: {
+                          underline: classes.underline,
+                        }
+                      }}
+                    InputLabelProps={{
+                        classes: {
+                          root: classes.label,
+                        }
+                      }}
+                />
+                <TextField
+                    label="Salary"
+                    name="salary"
+                    type="number"
+                    value={employee.salary}
+                    onChange={handleInputChange}
+                    className="salaryField"
+                    variant="filled"
+                    InputProps={{
+                        classes: {
+                            underline: classes.underline,
+                        }
+                    }}
+                    InputLabelProps={{
+                        classes: {
+                            root: classes.label,
+                        }
+                    }}
                 />
                 <div className="buttonsRow">
                     <Button 
@@ -151,7 +219,7 @@ function CreateRequestModal({ isOpen, onClose, onCreateRequest, employeeId }) {
                     anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
                 >
                     <Alert onClose={() => setOpenSnackbar(false)} severity="success">
-                        Request created successfully!
+                        Employee created successfully!
                     </Alert>
                 </Snackbar>
             </div>
@@ -159,4 +227,4 @@ function CreateRequestModal({ isOpen, onClose, onCreateRequest, employeeId }) {
     );
 }
 
-export default CreateRequestModal;
+export default CreateEmployeeModal;

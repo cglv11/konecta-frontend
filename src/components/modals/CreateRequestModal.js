@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Modal, TextField, Button, CircularProgress, Snackbar } from '@material-ui/core';
 import Alert from '@material-ui/lab/Alert';
 import { makeStyles } from "@material-ui/core/styles";  
-import "./EmployeeModal.css";
+import "./RequestModal.css";
 
 const useStyles = makeStyles({
     underline: {
@@ -20,7 +20,7 @@ const useStyles = makeStyles({
     }
 });
 
-function CreateEmployeeModal({ isOpen, onClose, onCreateRequest, employeeId }) {
+function CreateRequestModal({ isOpen, onClose, onCreateRequest, employeeId }) {
     const [request, setRequest] = useState({
         code: '',
         summary: '',
@@ -159,4 +159,4 @@ function CreateEmployeeModal({ isOpen, onClose, onCreateRequest, employeeId }) {
     );
 }
 
-export default CreateEmployeeModal;
+export default CreateRequestModal;

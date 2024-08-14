@@ -24,11 +24,6 @@ const AdminEmployeeSection = () => {
     getEmployees(page);
   }, [page]);
 
-  useEffect(() => {
-    console.log('emplados: ', employees)
-  }, [employees])
-  
-
   const handlePageChange = (event, value) => {
     setPage(value);
   };
@@ -115,7 +110,6 @@ const AdminEmployeeSection = () => {
           isOpen={isCreateModalOpen}
           onClose={() => setIsCreateModalOpen(false)}
           onCreateEmployee={handleCreateEmployee}
-          employeeId={user.employee.id}
         />
       )}
 

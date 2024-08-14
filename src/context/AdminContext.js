@@ -88,6 +88,7 @@ export const AdminProvider = ({ children }) => {
 
   const postEmployee = async (employeeData) => {
     try {
+      console.log('employee: ', employeeData);
       const response = await api.post('/employees', employeeData);
       setEmployees([...employees, response.data.employee]);
     } catch (error) {

@@ -70,7 +70,7 @@ function RequestModal({ isOpen, onClose, requestData, isAdmin, onUpdateRequest }
                             classes: {
                               underline: classes.underline,
                             },
-                            readOnly: !isAdmin // Solo permite edición si es admin
+                            readOnly: !isAdmin
                           }}
                         InputLabelProps={{
                             classes: {
@@ -108,7 +108,7 @@ function RequestModal({ isOpen, onClose, requestData, isAdmin, onUpdateRequest }
                             classes: {
                               underline: classes.underline,
                             },
-                            readOnly: !isAdmin // Solo permite edición si es admin
+                            readOnly: !isAdmin 
                           }}
                         InputLabelProps={{
                             classes: {
@@ -128,7 +128,7 @@ function RequestModal({ isOpen, onClose, requestData, isAdmin, onUpdateRequest }
                             classes: {
                               underline: classes.underline,
                             },
-                            readOnly: !isAdmin // Solo permite edición si es admin
+                            readOnly: !isAdmin 
                           }}
                         InputLabelProps={{
                             classes: {
@@ -148,7 +148,7 @@ function RequestModal({ isOpen, onClose, requestData, isAdmin, onUpdateRequest }
                             classes: {
                               underline: classes.underline,
                             },
-                            readOnly: !isAdmin // Solo permite edición si es admin
+                            readOnly: !isAdmin 
                           }}
                         InputLabelProps={{
                             classes: {
