@@ -58,6 +58,14 @@
     opacity: 1;
 }
 
+.viewButton {
+    width: 40px;
+    height: 40px;
+    padding: 5px;
+    border-radius: 50%;
+    background-color: #78a3b9 !important;
+    margin-right: 5% !important;
+}
 .editButton {
     width: 40px;
     height: 40px;
@@ -87,7 +95,7 @@
 }
 
 .customTableContainer {
-    height: 627px; 
+    height: 784px; 
     overflow-y: auto;
 }
 

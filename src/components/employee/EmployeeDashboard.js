@@ -1,7 +1,6 @@
 import Navbar from '../Navbar';
 import React, { useState, useEffect, useContext } from 'react';
-import { Button } from '@material-ui/core';
-import { Snackbar, SnackbarContent } from '@material-ui/core';
+import { Button, Snackbar } from '@material-ui/core';
 import Alert from '@material-ui/lab/Alert';
 
 import { EmployeeContext } from '../../context/EmployeeContext';
@@ -34,7 +33,7 @@ const EmployeeDashboard = () => {
   const handleCreateRequest = async (newRequest) => {
     try {
       await postRequest(newRequest);
-      getRequests(user.employee.id, page); // Actualizar la lista después de crear la solicitud
+      getRequests(user.employee.id, page);
       setSnackbarSeverity('success');
       setSnackbarMessage('Request created successfully!');
       setOpenSnackbar(true);
@@ -103,7 +102,7 @@ const EmployeeDashboard = () => {
         />
       )}
 
-<Snackbar 
+      <Snackbar 
         open={openSnackbar} 
         autoHideDuration={6000} 
         onClose={() => setOpenSnackbar(false)}

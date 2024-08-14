@@ -1,9 +1,9 @@
 import React from "react";
-import { Table, TableBody, TableCell, TableHead, TableRow, Paper, TableContainer, IconButton } from "@mui/material";
+import { Table, TableBody, TableCell, TableHead, TableRow, Paper, TableContainer, IconButton } from "@material-ui/core";
 import { Skeleton } from "@material-ui/lab";
 import Pagination from '@material-ui/lab/Pagination';
-import EditIcon from '@mui/icons-material/Edit';
-import DeleteIcon from '@mui/icons-material/Delete';
+import EditIcon from '@material-ui/icons/Edit';
+import DeleteIcon from '@material-ui/icons/Delete';
 import VisibilityIcon from '@mui/icons-material/Visibility';
 import "./RequestsTable.css";
 
@@ -51,7 +51,7 @@ const RequestsTable = ({
                             ) : (
                                 requests.map((request, index) => (
                                     <TableRow key={request.id}>
-                                        <TableCell>{(page - 1) * 10 + index + 1}</TableCell> {/* Número secuencial según la página */}
+                                        <TableCell>{(page - 1) * 10 + index + 1}</TableCell>
                                         <TableCell>{request.employeeId}</TableCell>
                                         <TableCell>{request.code}</TableCell>
                                         <TableCell>{request.summary}</TableCell>
@@ -59,22 +59,25 @@ const RequestsTable = ({
                                             <IconButton 
                                                 onClick={() => onViewClick(request.id)} 
                                                 title="View Request"
+                                                className="viewButton" 
                                             >
-                                                <VisibilityIcon fontSize="medium" />
+                                                <VisibilityIcon fontSize="medium" style={{ color: 'white'}} />
                                             </IconButton>
                                             {isAdmin && (
                                                 <>
                                                     <IconButton 
                                                         onClick={() => onEditClick(request)} 
                                                         title="Edit Request"
+                                                        className="editButton" 
                                                     >
-                                                        <EditIcon fontSize="medium" />
+                                                        <EditIcon fontSize="medium"  style={{ color: 'white'}} />
                                                     </IconButton>
                                                     <IconButton 
                                                         onClick={() => onDeleteClick(request.id)} 
                                                         title="Delete Request"
+                                                        className="deleteButton" 
                                                     >
-                                                        <DeleteIcon fontSize="medium" />
+                                                        <DeleteIcon fontSize="medium" style={{ color: 'white' }} />
                                                     </IconButton>
                                                 </>
                                             )}

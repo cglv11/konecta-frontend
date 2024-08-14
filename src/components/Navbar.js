@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import { AppBar, Toolbar, Button, Box } from '@mui/material';
+import { AppBar, Toolbar, Button, Box } from "@material-ui/core";
 import { AuthContext } from '../context/AuthContext';
 import { useNavigate } from 'react-router-dom';
 
@@ -13,14 +13,14 @@ const Navbar = () => {
     };
   
     return (
-      <AppBar position="static" sx={{ backgroundColor: '#48616D' }}>
+      <AppBar position="static" style={{ backgroundColor: '#536C79' }}>
         <Toolbar>
           <Box sx={{ flexGrow: 1, display: 'flex', gap: 2 }}>
             {user.employee.role === 'ADMIN' ? (
               <>
                 <Button color="inherit" onClick={() => navigate('/admin')}>Inicio</Button>
-                <Button color="inherit" onClick={() => navigate('/admin/employees')}>Empleados</Button>
                 <Button color="inherit" onClick={() => navigate('/admin/request')}>Solicitudes</Button>
+                <Button color="inherit" onClick={() => navigate('/admin/employees')}>Empleados</Button>
               </>
             ) : (
               <>
